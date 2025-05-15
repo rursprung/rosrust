@@ -156,9 +156,7 @@ fn request_topic(
     let (_code, _message, protocols): (i32, String, (String, String, i32)) = xml_rpc::Client::new()
         .map_err(error::rosxmlrpc::ErrorKind::ForeignXmlRpc)?
         .call(
-            &publisher_uri
-                .parse()
-                .chain_err(|| error::rosxmlrpc::ErrorKind::BadUri(publisher_uri.into()))?,
+            &publisher_uri,
             "requestTopic",
             (caller_id, topic, [["TCPROS"]]),
         )

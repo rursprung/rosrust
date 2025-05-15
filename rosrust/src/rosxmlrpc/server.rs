@@ -35,7 +35,7 @@ impl Server {
         uri: &SocketAddr,
     ) -> xml_rpc::error::Result<
         xml_rpc::server::BoundServer<
-            impl Fn(&rouille::Request) -> rouille::Response + Send + Sync + 'static,
+            impl Fn(&rouille::Request) -> rouille::Response + Send + Sync + 'static + use<'_>,
         >,
     > {
         self.server.bind(uri)
