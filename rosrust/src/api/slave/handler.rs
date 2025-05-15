@@ -240,7 +240,7 @@ impl SlaveHandler {
         addr: &SocketAddr,
     ) -> rosxmlrpc::error::Result<
         xml_rpc::server::BoundServer<
-            impl Fn(&rouille::Request) -> rouille::Response + Send + Sync + 'static,
+            impl Fn(&rouille::Request) -> rouille::Response + Send + Sync + 'static + use<'_>,
         >,
     > {
         self.server.bind(addr).map_err(Into::into)
